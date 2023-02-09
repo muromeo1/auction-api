@@ -15,7 +15,7 @@ module BaseInteractor
     def requires(*args)
       before do
         args.each do |arg|
-          context.fail!(error: ":#{arg} cant be nil") unless attribute_exists?(arg)
+          context.fail!(error: "#{arg} can't be nil") unless attribute_exists?(arg)
         end
       end
 
