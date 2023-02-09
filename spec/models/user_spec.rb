@@ -5,6 +5,7 @@ RSpec.describe User do
 
   let(:errors) { model.errors.messages }
   let(:user) { create(:user) }
+  let(:user_with_bid) { create(:user_with_bid) }
 
   describe 'validation' do
     context 'when adds an user with blank data' do
@@ -24,6 +25,14 @@ RSpec.describe User do
       end
 
       it { expect(errors[:email].first).to eq('has already been taken') }
+    end
+  end
+
+  describe 'associations' do
+    context 'when deletes an user with bid' do
+      before { user_with_bid.destroy! }
+
+      it { expect(user_with_bid.bids).to be_blank }
     end
   end
 end
