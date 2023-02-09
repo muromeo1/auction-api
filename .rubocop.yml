@@ -24,3 +24,6 @@ Layout/LineLength:
 
 Naming/RescuedExceptionsVariableName:
   Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never

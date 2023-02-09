@@ -10,21 +10,10 @@ RSpec.describe User do
     context 'when adds an user with blank data' do
       before { model.valid? }
 
-      it 'returns error on name' do
-        expect(errors[:name].first).to eq("can't be blank")
-      end
-
-      it 'returns error on email' do
-        expect(errors[:email].first).to eq("can't be blank")
-      end
-
-      it 'returns error on password' do
-        expect(errors[:password].first).to eq("can't be blank")
-      end
-
-      it 'returns error on password_confirmation' do
-        expect(errors[:password_confirmation].first).to eq("can't be blank")
-      end
+      it { expect(errors[:name].first).to eq("can't be blank") }
+      it { expect(errors[:email].first).to eq("can't be blank") }
+      it { expect(errors[:password].first).to eq("can't be blank") }
+      it { expect(errors[:password_confirmation].first).to eq("can't be blank") }
     end
 
     context 'when tries to add new user with existing email' do
@@ -34,9 +23,7 @@ RSpec.describe User do
         model.valid?
       end
 
-      it 'returns error on email' do
-        expect(errors[:email].first).to eq('has already been taken')
-      end
+      it { expect(errors[:email].first).to eq('has already been taken') }
     end
   end
 end
