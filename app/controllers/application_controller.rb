@@ -5,6 +5,10 @@ class ApplicationController < ActionController::API
     @current_user ||= authorize_token.user
   end
 
+  def highest_bid
+    @highest_bid ||= Bid.last
+  end
+
   def render_json(hash)
     status = hash.extract!(:status)[:status] || 200
 

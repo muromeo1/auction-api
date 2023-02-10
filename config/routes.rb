@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :bids, only: [:create]
+      resources :bids, only: %i[index create]
     end
   end
 end

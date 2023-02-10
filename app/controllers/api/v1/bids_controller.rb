@@ -1,6 +1,17 @@
 module Api
   module V1
     class BidsController < ApplicationController
+      def index
+        render_json(
+          current_bid: { amount: current_user.bids.last&.amount },
+          highest_bid: {
+            amount: highest_bid&.amount,
+            owner: from_curren_user?
+          },
+          status: 200
+        )
+      end
+
       def create
         result = Bids::Create.call(bids_params)
 
@@ -12,6 +23,10 @@ module Api
       end
 
       private
+
+      def from_curren_user?
+        highest_bid&.user_id == current_user.id
+      end
 
       def bids_params
         new_params = params.permit(:amount)

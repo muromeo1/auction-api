@@ -27,3 +27,6 @@ Naming/RescuedExceptionsVariableName:
 
 Style/HashSyntax:
   EnforcedShorthandSyntax: never
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 15
