@@ -1,15 +1,10 @@
 module Api
   module V1
     class BidsController < ApplicationController
+      skip_before_action :authorize, only: %i[index]
+
       def index
-        render_json(
-          current_bid: { amount: current_user.bids.last&.amount },
-          highest_bid: {
-            amount: highest_bid&.amount,
-            owner: from_curren_user?
-          },
-          status: 200
-        )
+        render_json(payload)
       end
 
       def create
@@ -24,7 +19,34 @@ module Api
 
       private
 
-      def from_curren_user?
+      def payload
+        if current_user.present?
+          current_bid_payload.merge!(highest_bid_payload)
+        else
+          highest_bid_payload
+        end
+      end
+
+      def current_bid_payload
+        {
+          current_bid: {
+            amount: current_user&.bids&.last&.amount
+          }
+        }
+      end
+
+      def highest_bid_payload
+        {
+          highest_bid: {
+            amount: highest_bid&.amount,
+            owner: from_current_user?
+          }
+        }
+      end
+
+      def from_current_user?
+        return false if current_user.blank?
+
         highest_bid&.user_id == current_user.id
       end
 
