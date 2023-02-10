@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Sessions::AuthorizeToken do
   describe '.call' do
-    subject(:interactor) { described_class.call(params) }
+    subject(:interactor) { described_class.call(token: params['Authorization']) }
 
     let(:params) { {} }
     let(:user) { create(:user) }

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
           get 'authenticate', to: 'authenticate'
         end
       end
+
+      resources :bids, only: [:create]
     end
   end
 end
