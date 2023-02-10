@@ -1,24 +1,72 @@
-# README
+# Auction
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A token based api for an Auction system.
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+These instructions will get you a copy of the project up and running on your local machine for development.
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+Things you need to install the project.
 
-* Database creation
+```
+Postgres 	>= 12.14
+Ruby 		== 3.2.0
+Rails		== 7.0.4
+```
 
-* Database initialization
+#### Guide to install:
 
-* How to run the test suite
+- [Ruby and Rails](https://gorails.com/setup/ubuntu/20.04)
+- [PostgreSQL](https://www.postgresql.org/download/linux/ubuntu/)
 
-* Services (job queues, cache servers, search engines, etc.)
+### Installing and Running
 
-* Deployment instructions
+How to setup the environment:
 
-* ...
+1 - Clone the project
+
+```
+git clone git@github.com:muromeo1/auction-interview.git
+```
+
+2 - Change config/database.yml to your postgres username and password
+
+```yml
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+```
+
+3 - Setup database
+
+```
+rails db:create
+rails db:migrate
+```
+
+4 - Run the project
+
+```
+rails s
+```
+
+Good to go!
+
+## Endpoints
+https://documenter.getpostman.com/view/25778360/2s935sohZ2
+
+## Steps to use
+1) Create an user
+2) Copy your generated token
+3) Place a bid (paste your token in authoriztion header)
+4) Check highest bid so far
+
+## Author
+
+**Murilo Romeo** - *Ruby on Rails developer* - [muromeo1](https://github.com/muromeo1)
