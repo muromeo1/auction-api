@@ -7,9 +7,11 @@ RSpec.describe Bid do
   let(:user) { create(:user) }
   let(:user2) { create(:user) }
 
-  let(:bid) { build(:bid, user: user) }
-  let(:bid2) { build(:bid, user: user, amount: 20) }
-  let(:bid3) { build(:bid, user: user2, amount: 20) }
+  let(:item) { create(:item) }
+
+  let(:bid) { build(:bid, user: user, item: item) }
+  let(:bid2) { build(:bid, user: user, amount: 20, item: item) }
+  let(:bid3) { build(:bid, user: user2, amount: 20, item: item) }
 
   describe 'validation' do
     context 'when adds a bid with blank data' do

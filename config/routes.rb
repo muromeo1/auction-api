@@ -8,6 +8,12 @@ Rails.application.routes.draw do
       end
 
       resources :bids, only: %i[index create]
+
+      resources :items, only: %i[show create] do
+        member do
+          post 'buy', to: 'buy'
+        end
+      end
     end
   end
 end

@@ -27,7 +27,7 @@ module BaseInteractor
         args.each do |arg|
           next if method_valid?(arg)
 
-          context.fail!(error: "##{arg} returned false")
+          context.fail!(error: "#{arg} can't be nil")
         end
       end
     end

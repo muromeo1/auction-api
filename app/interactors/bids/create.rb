@@ -4,7 +4,8 @@ module Bids
     include BaseInteractor
 
     requires :current_user,
-             :amount
+             :amount,
+             :item_id
 
     def call
       bid.valid? ? create_bid : raise_error
@@ -15,7 +16,10 @@ module Bids
     private
 
     def bid
-      @bid ||= current_user.bids.new(amount: amount)
+      @bid ||= current_user.bids.new(
+        item_id: item_id,
+        amount: amount
+      )
     end
 
     def create_bid

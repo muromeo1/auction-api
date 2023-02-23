@@ -6,16 +6,19 @@ RSpec.describe Bids::Create, type: :interactor do
 
     let(:params) { {} }
     let(:user) { create(:user) }
+    let(:item) { create(:item) }
     let(:correct_params) do
       {
+        item_id: item.id,
         current_user: user,
         amount: 3
       }
     end
 
-    let(:user_with_bid) { create(:user_with_bid) }
+    let(:user_with_bid) { create(:user_with_bid, item: item) }
     let(:repeated_bid_params) do
       {
+        item_id: item.id,
         current_user: user_with_bid,
         amount: 44
       }

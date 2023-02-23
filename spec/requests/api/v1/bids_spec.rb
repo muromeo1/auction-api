@@ -9,6 +9,7 @@ RSpec.describe 'Api::V1::BidsController' do
 
   let(:user) { create(:user) }
   let(:user_with_bid) { create(:user_with_bid) }
+  let(:item) { create(:item) }
   let(:authentication) { Users::Authenticate.call(email: user.email, password: user.password) }
   let(:parsed_response) { JSON.parse(response.body) }
 
@@ -18,7 +19,7 @@ RSpec.describe 'Api::V1::BidsController' do
   before { user_with_bid && controller }
 
   describe 'post /api/v1/bids' do
-    let(:params) { { amount: 10.25 } }
+    let(:params) { { amount: 10.25, item_id: item.id } }
 
     it { expect(response).to have_http_status(:created) }
     it { expect(parsed_response['success']).to be(true) }

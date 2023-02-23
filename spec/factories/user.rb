@@ -6,8 +6,12 @@ FactoryBot.define do
     password_confirmation { password }
 
     factory :user_with_bid do
-      after :create do |user|
-        create(:bid, user: user)
+      transient do
+        item { create(:item) }
+      end
+
+      after :create do |user, options|
+        create(:bid, user: user, item: options.item)
       end
     end
   end

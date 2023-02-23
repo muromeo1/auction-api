@@ -51,7 +51,7 @@ module Api
       end
 
       def bids_params
-        new_params = params.permit(:amount)
+        new_params = params.permit(:amount, :item_id)
         new_params.merge({ current_user: current_user })
       end
     end
